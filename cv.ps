@@ -1,0 +1,104 @@
+%!PS
+%CV-Demo "Parasitic Quine Hack"
+20 dict begin /sourcedict currentdict def /hack (
+2 dict dup/Duplex true put dup/Tumble false put/setpagedevice dup where{pop cvx exec}{pop pop}ifelse
+{ /top { 45 582 } def /bot 422.5 def /lnum 0 def /++ { dup dup load 1 add store load } def
+/line{gsave /lnum ++ (    ) cvs gsave -10 0 rmoveto rline grestore show grestore}def %line numbers
+currentfile { dup read not {pop exit} if exch } loop                           %dump file on stack
+count dup string dup 3 -1 roll 1 sub -1 0 { 4 -1 roll put dup } for pop  %slurp data into a string
+1 dict begin /prog exch def ({ //prog cvx end exec             %execute program without dictionary
+//sourcedict begin /newpage { gsave 0 792 translate -90 rotate T top moveto } def
+/realshowpage /showpage load def                              %abuse showpage to compose textboxes
+/showpage { grestore /newpage{T 45 700 moveto /bot 0 def}def /showpage /realshowpage load def} def
+/T 7 7.6 /Courier fontproc def newpage (%!PS
+%CV-Demo "Parasitic Quine Hack"
+20 dict begin /sourcedict currentdict def /hack  ) dup dup length 1 sub 16#28 put par %type prolog
+//hack dup length 2 sub 1 exch getinterval par                                        %type hack 
+(  def hack cvx exec) dup 0 16#29 put par                                             %type seam
+//prog dup length 1 sub 0 exch getinterval par                                        %type prog
+410 107 translate .27 .27 scale 0 0 612 792 rectstroke //prog cvx end exec            %draw thumb
+}) token pop exch pop end exec } exec                              %stitch proc, end dict, execute
+) def hack cvx exec
+
+%!PS
+%1-D Ragged Typesetting Engine 
+/top { 110 720 } def /bot 70 def /newpage { T top moveto } def /sigil<5E>def 
+/br { 0 lead neg rmoveto } def /hbr { 0 lead -0.5 mul rmoveto } def
+/line{gsave sigil{search{show exch token pop exec exch}{show exit}ifelse}loop grestore}def
+/rline { gsave dup stringwidth pop neg 0 rmoveto show grestore } def
+/par { (\n) { search exch line not { exit } if br
+    currentpoint exch pop bot lt { showpage newpage } if } loop br } def
+/settab{/tabstop currentpoint pop def}def /tab{tabstop currentpoint exch pop moveto}def
+/fontproc { 3 dict begin /name exch def /lead exch def /x exch def
+    ({//name //x selectfont /lead //lead def}) token pop exch pop bind end } def
+/B 11 13 /Palatino-Bold fontproc def
+/I 10 11 /Palatino-Italic fontproc def
+/R 10 11 /Palatino-Roman fontproc def
+/T 9 11 /Courier fontproc def
+/H 14 16 /Palatino-Bold fontproc def
+
+(1978-     ) newpage rline
+(Michael Joshua Ryan         ^settab ^T luser-droog@gmail.com) H par
+(3447 Connecticut St. 104    ^tab 202-494-2570
+St. Louis, MO 63118) R hbr par
+
+(Objective) br B line br
+(I want to work where my skills and talents may be well utilized.
+I am not looking for a "job" so much as a calling, 
+where enthusiasm and critical thinking have value.
+I attempt to combine Renaissance aesthetics, cosmopolitan ethics, and scientific technique
+in the critique and construction of physical and conceptual artifacts.) R hbr par
+
+(Education) br B line br
+(1995-1996  ) T hbr rline
+(In lieu of my senior year of high school,
+I received a GED, and took Russian 101 at UM - St. Louis,
+followed by a 6-month student exchange to Russia.) R par
+(1996-2001  ) T hbr rline
+(Accumulated 165 credit hours at UM - St. Louis, in an undirected, ill-advised,
+survey of all the "interesting" classes in English, French, 
+Russian, Fine Arts, Computer Science, Honors Symposia, and Communications.) R par
+
+(Employment) br B line br
+(1997-1998  ) T hbr rline
+(Intern Fleishman Hillard Computer Help Desk
+Fired for no-call no-show. Learned to be on time.) R par
+(1998-2001  ) T hbr rline
+(Student Programmer UM-St. Louis Registrar's Office
+Perform ^T MARKIV ^R database queries (^T MVS/TSO^R ) and reformat data (^T UNIX^R )
+to produce reports (Line-Printer) and address labels (^T Postscript^R ).) R par
+(2002-      ) T hbr rline
+(Barista Starbucks Coffee Co.
+Seduced by the Hippie Propaganda, Hired, Promoted, Demoted, Endured.) R par
+
+(Extracurricular) br B line br
+(1989-      ) T hbr rline
+(Study the guitar, piano, bass, clarinet, music theory, songwriting.
+Rock, Folk, Jazz, Ragtime, Blues, Classical, Flamenco.
+UMSL Jazz Band, Jazz Ensemble, Pep Band, Concert Band.) R par
+(1998-1999  ) T hbr rline
+("Redaktor" of the Pierre Laclede Honors College Student Association's ^I Brain Stew.
+Designed and Edited monthly magazine using Pagemaker and various other tools.) R par
+(1999-2000  ) T hbr rline
+(Treasurer of the UMSL ACM Chapter. ^I Requisitioned "first" computer!) R par
+(1998-2003  ) T hbr rline 
+(Intense interest in programming languages and language implementation,
+graphics and graphics programming.
+Frightened away by Hofstadter's ^I Godel, Escher, Bach.^R) R par
+(2004-2008  ) T hbr rline
+(Shifted gears and abandoned programming
+in favor of intense study of Esoteric Psychology, Metaphysics, and Mysticism,
+ie. "the other half" of the Western Cultural Tradition.) R par
+(2007-      ) T hbr rline
+(Resumed interest in programming with a goal to implement
+a clone of Sun Microsystems' ^I NeWS ^R graphical programming interface for \
+U^{gsave currentfont [.73 0 0 .8 0 0] makefont setfont}NIX^{grestore}.
+Participated in internet programming fora
+(^T comp.lang.c, comp.lang.postscript, comp.unix.programmer,
+^R and ^T stackoverflow.com^R ) under the name "luser droog",
+contributing programs, answers, questions, and temper tantrums.) R par
+
+(Portfolio) br B line R br
+(2008-      ) T hbr rline
+(xpost: A Level-1 Postscript Interpreter for GNU/Linux/X11 (^T code.google.com/p/xpost^R ).) R par
+showpage
