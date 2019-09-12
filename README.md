@@ -1,4 +1,4 @@
-# cv
+# cv - Michael Joshua Ryan (aka. luser droog)
 My resume is intended to be as clever as possible, which consequently
 required a great deal of debugging.
 
