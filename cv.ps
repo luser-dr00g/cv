@@ -5,7 +5,7 @@
 {/top { 45 582 } def /bot 440 def /lnum 0 def /++ { dup dup load 1 add store load } def
 /line{ gsave /lnum ++ (    ) cvs gsave -10 0 rmoveto rline grestore show grestore }def %line numbers
 /newpage { gsave 0 792 translate -90 rotate T top moveto } def /realsp /showpage load def
-/showpage { grestore /newpage{T 45 760 moveto /bot 0 def}def /showpage /realsp load def} def
+/showpage { grestore /newpage{T 45 770 moveto /bot 0 def}def /showpage /realsp load def} def
 1 dict begin /prog currentfile 1e5 cvi string readstring pop def ({ //prog cvx end exec
 //quinedict begin /T 7 7.6 /Courier fontproc def newpage (%!PS
 %CV/Quine Demo
@@ -70,7 +70,11 @@ br br hr br br
 
 (Education) br B line br
  (Dec 2020    ) T hbr rline
-(BSCS University of Missouri - St. Louis (expected)) R par
+(BS Computer Science ^R University of Missouri - St. Louis) /Palatino-Bold 11 selectfont par
+
+(Skills) br B line br
+(C, PostScript, Lisp, APL, Forth, Assembly, Java, JavaScript, HTML, CSS, PHP, shell scripting. \
+Procedural, Functional, Object Oriented, Model/View/Controller.) R jpar
 
 (Employment) br B line br
 (1998-2001    ) T hbr rline
